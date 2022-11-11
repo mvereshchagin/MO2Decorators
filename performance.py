@@ -12,22 +12,29 @@ def str_test():
 
     repeat = repeat_timeit(n)
 
-    repeat(str_test_f)(*args)
-    repeat(str_test_format_no_number)(*args)
-    repeat(str_test_format_with_number)(*args)
-    repeat(str_test_concat)(*args)
-    repeat(str_test_join)(*args)
+    str_test_list = [str_test_f,
+                     str_test_format_no_number,
+                     str_test_format_with_number,
+                     str_test_concat,
+                     str_test_join]
+
+    for func in str_test_list:
+        repeat(func)(*args)
+
 
     n = 100
     repeat = repeat_timeit(n)
 
     count = int(1e+5)
-    repeat(loop_test_for)(count)
-    repeat(loop_test_for_in_list)(count)
-    repeat(loop_test_for_allocate)(count)
-    repeat(loop_test_while)(count)
-    repeat(loop_test_while_allocate)(count)
-    repeat(lambda n: [i for i in range(n)])(count)
+    loop_test_list = [loop_test_for,
+                      loop_test_for_in_list,
+                      loop_test_for_allocate,
+                      loop_test_while,
+                      loop_test_while_allocate,
+                      lambda n: [i for i in range(n)]]
+
+    for func in loop_test_list:
+        repeat(func)(count)
 
 
 # region str_tests
